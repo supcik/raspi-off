@@ -12,8 +12,8 @@ Environment="RASPI_OFF_MQTT_BROKER_URL=tcp://mqtt.local:1883"
 Environment="RASPI_OFF_MQTT_BASE_TOPIC=raspi-off"
 EnvironmentFile=-/etc/default/raspi-off
 ExecStart=/usr/sbin/raspi-off \
-  --mqtt-broker=$RASPI_OFF_MQTT_BROKER_URL \
-  --mqtt-base-topic=$RASPI_OFF_MQTT_BASE_TOPIC
+  --mqtt-broker=${RASPI_OFF_MQTT_BROKER_URL} \
+  --mqtt-base-topic=${RASPI_OFF_MQTT_BASE_TOPIC}
 StartLimitBurst=5
 StartLimitIntervalSec=10
 
