@@ -1,0 +1,52 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+    goarch:
+      - arm
+      - arm64
+    ldflags:
+      - -s -w -X github.com/supcik/raspi-off/cmd.version={{.Version}}
+
+archives:
+  - formats: ["tar.gz"]
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{ .Arch }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+
+nfpms:
+  - maintainer: Jacques Supcik <jacques.supcik@hefr.ch>
+    description: Raspberry Pi Shutdown Service
+    homepage: https://github.com/supcik/raspi-off
+    license: MIT
+    formats:
+      - deb
+    bindir: /usr/sbin
+    scripts:
+      postinstall: "scripts/postinstall.sh"
+      postremove: "scripts/postremove.sh"
+    contents:
+      - src: systemd/raspi-off
+        dst: /etc/default/raspi-off
+      - src: systemd/raspi-off.service
+        dst: /usr/lib/systemd/system/raspi-off.service
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+
+release:
+  mode: keep-existing

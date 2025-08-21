@@ -1,0 +1,17 @@
+[Unit]
+Description=Raspberry Pi Shutdown
+After=network.target
+StartLimitIntervalSec=0
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+EnvironmentFile=-/etc/default/raspi-off
+ExecStart=/usr/sbin/raspi-off --server ${}
+StartLimitBurst=5
+StartLimitIntervalSec=10
+
+[Install]
+WantedBy=multi-user.target
