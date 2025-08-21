@@ -1,2 +1,2 @@
 RASPI_OFF_MQTT_BROKER_URL="tcp://mqtt.local:1883"
-RASPI_OFF_MQTT_TOPIC=raspi-off
+RASPI_OFF_MQTT_BASE_TOPIC=raspi-off

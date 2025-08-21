@@ -6,7 +6,7 @@ systemd_version=0
 if ! command -V systemctl >/dev/null 2>&1; then
   use_systemctl="False"
 else
-    systemd_version=$(systemctl --version | head -1 | sed 's/systemd //g')
+    systemd_version=$(systemctl --version | head -1 | sed 's/systemd \([0-9]\+\).*/\1/g')
 fi
 
 cleanup() {
@@ -50,7 +50,6 @@ cleanInstall() {
 upgrade() {
     printf "\033[32m Post Install of an upgrade\033[0m\n"
     # Step 3(upgrade), do what you need
-    ...
 }
 
 # Step 2, check if this is a clean install or an upgrade

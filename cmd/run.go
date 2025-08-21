@@ -98,9 +98,9 @@ func run() {
 	id := getUniqueId()
 
 	slog.Info(fmt.Sprint("MQTT Client ID: ", id))
-	slog.Info(fmt.Sprint("MQTT Server: ", Server))
+	slog.Info(fmt.Sprint("MQTT Server: ", Broker))
 
-	opts := mqtt.NewClientOptions().AddBroker(Server).SetClientID(id).SetCleanSession(true)
+	opts := mqtt.NewClientOptions().AddBroker(Broker).SetClientID(id).SetCleanSession(true)
 	opts.SetKeepAlive(2 * time.Second)
 	opts.SetPingTimeout(1 * time.Second)
 	opts.ConnectTimeout = 10 * time.Second

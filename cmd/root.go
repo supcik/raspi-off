@@ -13,7 +13,7 @@ import (
 
 var Verbose bool
 var Debug bool
-var Server string
+var Broker string
 var BaseTopic string
 var QoS int
 
@@ -40,8 +40,8 @@ func Execute() {
 func init() {
 	rootCmd.Flags().BoolVarP(&Verbose, "verbose", "v", false, "verbose output")
 	rootCmd.Flags().BoolVarP(&Debug, "debug", "d", false, "debug output")
-	rootCmd.Flags().StringVarP(&Server, "server", "s", "tcp://mqtt.local:1883", "The full URL of the MQTT server to connect to")
-	rootCmd.Flags().StringVarP(&BaseTopic, "base-topic", "t", "raspi-off", "Base topic to subscribe to")
+	rootCmd.Flags().StringVarP(&Broker, "mqtt-broker", "b", "tcp://mqtt.local:1883", "The full URL of the MQTT broker to connect to")
+	rootCmd.Flags().StringVarP(&BaseTopic, "mqtt-base-topic", "t", "raspi-off", "Base topic to subscribe to")
 	rootCmd.Flags().IntVarP(&QoS, "qos", "q", 1, "The QoS to subscribe to messages at")
 	rootCmd.Version = version
 }
